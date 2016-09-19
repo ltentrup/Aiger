@@ -37,6 +37,14 @@ public struct CArrayOverlay<T>: Sequence, IteratorProtocol {
     var address: UnsafeMutablePointer<T>!  // is only accessed of length > 0
     var length: Int
     
+    public var underestimatedCount: Int
+    
+    init(address: UnsafeMutablePointer<T>!, length: Int) {
+        self.address = address
+        self.length = length
+        self.underestimatedCount = length
+    }
+    
     public mutating func next() -> T? {
         if length == 0 {
             return nil

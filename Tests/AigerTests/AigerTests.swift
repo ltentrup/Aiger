@@ -7,18 +7,25 @@ class AigerTests: XCTestCase {
             XCTFail()
             return
         }
-        XCTAssert(aiger.inputs.underestimatedCount == 2)
+        XCTAssertEqual(aiger.inputs.underestimatedCount, 2)
         for symbol in aiger.inputs {
             XCTAssert(symbol.lit == 2 || symbol.lit == 4)
         }
-        XCTAssert(aiger.outputs.underestimatedCount == 1)
+        
+        XCTAssertEqual(aiger.outputs.underestimatedCount, 1)
         for symbol in aiger.outputs {
-            XCTAssert(symbol.lit == 6)
+            XCTAssertEqual(symbol.lit, 6)
         }
-        XCTAssert(aiger.latches.underestimatedCount == 0)
-        XCTAssert(aiger.ands.underestimatedCount == 1)
+        XCTAssertEqual(aiger.outputs[0].lit, 6)
+        
+        
+        XCTAssertEqual(aiger.latches.underestimatedCount, 0)
+        
+        XCTAssertEqual(aiger.ands.underestimatedCount, 1)
         for and in aiger.ands {
-            XCTAssert(and.lhs == 6)
+            XCTAssertEqual(and.lhs, 6)
+            XCTAssertEqual(and.rhs0, 2)
+            XCTAssertEqual(and.rhs1, 4)
         }
         
         XCTAssertFalse(aiger.reencoded())

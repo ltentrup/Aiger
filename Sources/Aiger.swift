@@ -106,5 +106,12 @@ public struct CArrayOverlay<T>: Sequence, IteratorProtocol {
             return address.pointee
         }
     }
+    
+    public subscript(index: Int) -> T {
+        get {
+            precondition(index < length)
+            return address.advanced(by: index).pointee
+        }
+    }
 }
 

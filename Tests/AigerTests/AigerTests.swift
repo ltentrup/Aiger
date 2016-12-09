@@ -20,6 +20,8 @@ class AigerTests: XCTestCase {
         for and in aiger.ands {
             XCTAssert(and.lhs == 6)
         }
+        
+        XCTAssertFalse(aiger.reencoded())
     }
 
 

@@ -70,6 +70,10 @@ public class Aiger {
             abort()
         }
     }
+    
+    public func reencoded() -> Bool {
+        return aiger_is_reencoded(_aiger) != 0
+    }
 }
 
 public enum AigerTag {
